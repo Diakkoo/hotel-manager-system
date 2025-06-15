@@ -5,12 +5,12 @@
 using namespace std;
 
 
-//Ìí¼Ó³µÁ¾
+//æ·»åŠ è½¦è¾†
 void Car::addCar() {
     time_t _time;
     while (1){
         AA:
-            cout << "ÇëÊäÈë³µÅÆºÅ£º";
+            cout << "è¯·è¾“å…¥è½¦ç‰Œå·ï¼š";
             cin >> carNum;
 
             ifstream ifs("carData.txt", ios::in);
@@ -24,21 +24,21 @@ void Car::addCar() {
                 }
                 for (auto& num : strs) {
                     if (num == carNum) {
-                        cout << "³µÅÆºÅÖØ¸´" << endl;
+                        cout << "è½¦ç‰Œå·é‡å¤" << endl;
                         goto AA;
                     }
                 }
 
             }
-            cout << "ÇëÊäÈë³µÁ¾ÀàÐÍ£º";
+            cout << "è¯·è¾“å…¥è½¦è¾†ç±»åž‹ï¼š";
             cin >> carType;
-            cout << "ÇëÊäÈë³µÁ¾ÑÕÉ«£º";
+            cout << "è¯·è¾“å…¥è½¦è¾†é¢œè‰²ï¼š";
             cin >> color;
             inTime = time(&_time);
 
             saveInfor();
             char ch;
-            cout << "\tÊÇ·ñ¼ÌÐø£¿(y/n)";
+            cout << "\tæ˜¯å¦ç»§ç»­ï¼Ÿ(y/n)";
             cin >> ch;
             if (ch == 'n' || ch == 'N') {
                 break;
@@ -46,28 +46,28 @@ void Car::addCar() {
     }
 }
 
-//É¾³ý³µÁ¾
+//åˆ é™¤è½¦è¾†
 void Car::delCar() {
     ifstream carData("carData.txt", ios::in);
     ofstream outData("tempcarData.txt", ios::out);
     if (!carData || !outData) {
-        cout << "ÎÄ¼þ´ò¿ªÊ§°Ü" << endl;
+        cout << "æ–‡ä»¶æ‰“å¼€å¤±è´¥" << endl;
         return;
     }
     string carlicense, name, str;
     bool flag = true;
-    cout << "ÇëÊäÈëÒªÉ¾³ýµÄ³µÅÆºÅ£º";
+    cout << "è¯·è¾“å…¥è¦åˆ é™¤çš„è½¦ç‰Œå·ï¼š";
     cin >> carlicense;
     while (carData >> name) {
         getline(carData, str);
         if (carlicense == name) {
-            cout << "ÒªÉ¾³ýµÄ³µÁ¾ÐÅÏ¢£º" << endl << str << endl;
+            cout << "è¦åˆ é™¤çš„è½¦è¾†ä¿¡æ¯ï¼š" << endl << str << endl;
             flag = false;
             break;
         }
         outData << name << " " << str << endl;
         if(flag) {
-            cout << "¸Ã³µÁ¾²»´æÔÚ" << endl;
+            cout << "è¯¥è½¦è¾†ä¸å­˜åœ¨" << endl;
         }
         else {
             while (getline(carData, str)) {
@@ -80,7 +80,7 @@ void Car::delCar() {
             ifstream in("tempcarData.txt", ios::in);
             ofstream out("carData.txt", ios::out);
             if (!in || !out) {
-                cout << "ÐÞ¸ÄÊý¾ÝÊ±ÎÄ¼þ´ò¿ªÊ§°Ü" << endl;
+                cout << "ä¿®æ”¹æ•°æ®æ—¶æ–‡ä»¶æ‰“å¼€å¤±è´¥" << endl;
                 return;
             }
             else {
@@ -94,18 +94,18 @@ void Car::delCar() {
     }
 }
 
-//²éÕÒ³µÁ¾
+//æŸ¥æ‰¾è½¦è¾†
 void Car::findCar() {
 	ifstream carData("carData.txt", ios::in);
 	if (!carData) {
-		cout << "ÎÄ¼þ´ò¿ªÊ§°Ü£¡" << endl;
+		cout << "æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼" << endl;
 		return;
 	}
 	else {
 		string carLicense;
 		time_t _time, t1;
 		bool flag = true;
-		cout << "ÇëÊäÈëÒª²éÑ¯µÄ³µÅÆºÅ:";
+		cout << "è¯·è¾“å…¥è¦æŸ¥è¯¢çš„è½¦ç‰Œå·:";
 		cin >> carLicense;
 		while (carData >> carNum) {
 			carData >> carType >> color >> inTime;		
@@ -117,38 +117,38 @@ void Car::findCar() {
 			}
 		}
 		if (flag) {
-			cout << "Î´ÕÒµ½¸Ã³µÁ¾ÐÅÏ¢£¡" << endl;
+			cout << "æœªæ‰¾åˆ°è¯¥è½¦è¾†ä¿¡æ¯ï¼" << endl;
         }
 		else {
-			cout << "³µÅÆºÅ£º" << carNum << " " << "³µÁ¾ÀàÐÍ£º" << carType
-			<< " " << "ÑÕÉ«£º" << color << " " << "Í£³µÊ±³¤£º" << (t1 - inTime) << "Ãë"
-			<< " " << "¼Æ·Ñ£º" << (t1 - inTime) * 0.005 << "Ôª" << endl;
+			cout << "è½¦ç‰Œå·ï¼š" << carNum << " " << "è½¦è¾†ç±»åž‹ï¼š" << carType
+			<< " " << "é¢œè‰²ï¼š" << color << " " << "åœè½¦æ—¶é•¿ï¼š" << (t1 - inTime) << "ç§’"
+			<< " " << "è®¡è´¹ï¼š" << (t1 - inTime) * 0.005 << "å…ƒ" << endl;
         }
 	}
 	carData.close();
 }
 
-//ÐÞ¸Ä³µÁ¾ÐÅÏ¢
+//ä¿®æ”¹è½¦è¾†ä¿¡æ¯
 void Car::modCar() {
 	ifstream carData("carData.txt", ios::in);
 	ofstream outData("tempcarData.txt", ios::out);	
 	if (!carData || !outData) {
-		cout << "ÎÄ¼þ´ò¿ªÊ§°Ü£¡" << endl;
+		cout << "æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼" << endl;
 		return;
 	}
 	string name, str;
 	bool flag = true;
-	cout << "ÇëÊäÈëÒªÐÞ¸ÄµÄ³µÅÆºÅ£º";
+	cout << "è¯·è¾“å…¥è¦ä¿®æ”¹çš„è½¦ç‰Œå·ï¼š";
 	cin >> carNum;
 	while (carData >> name)	{
 		getline(carData, str);
 		if (carNum == name) {
 			time_t _time;
-			cout << "ÐÞ¸ÄºóµÄ³µÅÆºÅ£º";
+			cout << "ä¿®æ”¹åŽçš„è½¦ç‰Œå·ï¼š";
 			cin >> carNum;
-			cout << "ÐÞ¸ÄºóµÄ³µµÄÖÖÀà£º";
+			cout << "ä¿®æ”¹åŽçš„è½¦çš„ç§ç±»ï¼š";
 			cin >> carType;
-			cout << "ÐÞ¸ÄºóµÄ³µµÄÑÕÉ«£º";
+			cout << "ä¿®æ”¹åŽçš„è½¦çš„é¢œè‰²ï¼š";
 			cin >> color;
 			inTime = time(&_time);	
 			outData << carNum << " " << carType << " " << color << " " << inTime << endl;
@@ -158,7 +158,7 @@ void Car::modCar() {
 		outData << name << " " << str << endl;				
 	}
 	if (flag) {
-		cout << "ÐÞ¸Ä³µÁ¾Êý¾Ý²»´æÔÚ£¡" << endl;
+		cout << "ä¿®æ”¹è½¦è¾†æ•°æ®ä¸å­˜åœ¨ï¼" << endl;
     }
 	else {
 		while (getline(carData, str)) {
@@ -169,7 +169,7 @@ void Car::modCar() {
 		ifstream in("tempcarData.txt", ios::in);
 		ofstream out("carData.txt", ios::out);
 		if (!in || !out) {
-			cout << "ÎÄ¼þ´ò¿ªÊ§°Ü£¡" << endl;
+			cout << "æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼" << endl;
 			return;
 		}
 		else {
@@ -183,12 +183,12 @@ void Car::modCar() {
 	}
 }
 
-//ÏÔÊ¾ËùÓÐ³µÁ¾ÐÅÏ¢
+//æ˜¾ç¤ºæ‰€æœ‰è½¦è¾†ä¿¡æ¯
 void Car::showInfor() {
-     //´´½¨ÎÄ¼þÊäÈëÁ÷£¬´ò¿ªcarData.txtÎÄ¼þ
+     //åˆ›å»ºæ–‡ä»¶è¾“å…¥æµï¼Œæ‰“å¼€carData.txtæ–‡ä»¶
 	ifstream carData("carData.txt", ios::in);
 	if (!carData) {
-		cout << "ÎÄ¼þ´ò¿ªÊ§°Ü£¡" << endl;
+		cout << "æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼" << endl;
 		return;
 	}
 	else {
@@ -198,27 +198,27 @@ void Car::showInfor() {
 		{
 			carData >> carType >> color >> inTime;	
 			t = time(&_time);
-			cout << "³µÅÆºÅ£º" << carNum << " " << "³µÁ¾ÀàÐÍ£º" << carType
-				<< " " << "ÑÕÉ«£º" << color << " " << "Í£³µÊ±³¤£º" << (t - inTime) << "Ãë"
-				<< " " << "¼Æ·Ñ£º" << (t - inTime) * 0.005 << "Ôª" << endl;
+			cout << "è½¦ç‰Œå·ï¼š" << carNum << " " << "è½¦è¾†ç±»åž‹ï¼š" << carType
+				<< " " << "é¢œè‰²ï¼š" << color << " " << "åœè½¦æ—¶é•¿ï¼š" << (t - inTime) << "ç§’"
+				<< " " << "è®¡è´¹ï¼š" << (t - inTime) * 0.005 << "å…ƒ" << endl;
 			flag = false;
 		}
 		if (flag) {
-            cout << "\nÎÞ³µÁ¾ÐÅÏ¢" << endl;
+            cout << "\næ— è½¦è¾†ä¿¡æ¯" << endl;
         }
 		else {
-            cout << "\n³µÁ¾ÐÅÏ¢ÒÑÏÔÊ¾" << endl;
+            cout << "\nè½¦è¾†ä¿¡æ¯å·²æ˜¾ç¤º" << endl;
         }
 	}
 	carData.close();
 }
 
-//¼ÆËãÍ£³µÊ±³¤
+//è®¡ç®—åœè½¦æ—¶é•¿
 void Car::timeAmount()
 {
 	ifstream carData("carData.txt", ios::in);	
 	if (!carData) {
-		cout << "ÎÄ¼þ´ò¿ªÊ§°Ü£¡" << endl;
+		cout << "æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼" << endl;
 		return;
 	}
 	else {
@@ -232,19 +232,19 @@ void Car::timeAmount()
 			if ((t1 - inTime) * 0.0001 < long(8.64)) 
 				c2++;
 		}
-		cout << "³µÁ¾×ÜÊý£º" << c1 << endl;
-		cout << "Í£³µÊ±¼ä²»³¬¹ýÒ»Ìì£º" << c2 << endl;
-		cout << "Í£³µÊ±¼ä³¬¹ýÒ»Ìì£º" << c1 - c2 << endl;
+		cout << "è½¦è¾†æ€»æ•°ï¼š" << c1 << endl;
+		cout << "åœè½¦æ—¶é—´ä¸è¶…è¿‡ä¸€å¤©ï¼š" << c2 << endl;
+		cout << "åœè½¦æ—¶é—´è¶…è¿‡ä¸€å¤©ï¼š" << c1 - c2 << endl;
 	}
 	carData.close();
 }
 
-//±£´æ³µÁ¾ÐÅÏ¢
+//ä¿å­˜è½¦è¾†ä¿¡æ¯
 void Car::saveInfor()
 {
 	ofstream outData("carData.txt", ios::app);	
 	if (!outData) {
-		cout << "ÎÄ¼þ´ò¿ªÊ§°Ü£¡" << endl;
+		cout << "æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼" << endl;
 		return;
 	}
 	else {

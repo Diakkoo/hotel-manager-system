@@ -4,12 +4,12 @@
 #include <iomanip>
 using namespace std;
 
-//Ìí¼Ó·¿¼ä
+//æ·»åŠ æˆ¿é—´
 void Room::addRoom() {
     time_t _time;
     while (1) {
         AA:
-        cout << "ÇëÊäÈë·¿¼äºÅ£º";
+        cout << "è¯·è¾“å…¥æˆ¿é—´å·ï¼š";
         cin >> roomNum;
 
         ifstream ifs("roomData.txt", ios::in);
@@ -23,22 +23,22 @@ void Room::addRoom() {
             }
             for (auto& num : strs) {
                 if (num == roomNum) {
-                    cout << "¸Ã·¿¼äÒÑ±»Ô¤¶¨" << endl;
+                    cout << "è¯¥æˆ¿é—´å·²è¢«é¢„å®š" << endl;
                     goto AA;
                 }
             }
         }
-        cout << "ÇëÊäÈë·¿¼äÀàÐÍ£º";
+        cout << "è¯·è¾“å…¥æˆ¿é—´ç±»åž‹ï¼š";
         cin >> roomType;
-        cout << "ÇëÊäÈë¿Í»§ÐÕÃû£º";
+        cout << "è¯·è¾“å…¥å®¢æˆ·å§“åï¼š";
         cin >> customerName;
-        cout << "ÇëÊäÈëÁªÏµµç»°£º";
+        cout << "è¯·è¾“å…¥è”ç³»ç”µè¯ï¼š";
         cin >> phoneNum;
         bookTime = time(&_time);
 
         saveInfor();
         char ch;
-        cout << "\tÊÇ·ñ¼ÌÐø£¿(y/n)";
+        cout << "\tæ˜¯å¦ç»§ç»­ï¼Ÿ(y/n)";
         cin >> ch;
         if (ch == 'n' || ch == 'N') {
             break;
@@ -47,28 +47,28 @@ void Room::addRoom() {
     }
 }
 
-//É¾³ý·¿¼ä
+//åˆ é™¤æˆ¿é—´
 void Room::delRoom() {
     ifstream roomData("roomData.txt", ios::in);
     ofstream outData("temproomData.txt", ios::out);
     if (!roomData || !outData) {
-        cout << "ÎÄ¼þ´ò¿ªÊ§°Ü" << endl;
+        cout << "æ–‡ä»¶æ‰“å¼€å¤±è´¥" << endl;
         return;
     }
     string roomlicense, name, str;
     bool flag = true;
-    cout << "ÇëÊäÈëÒªÉ¾³ýµÄ·¿¼äºÅ£º";
+    cout << "è¯·è¾“å…¥è¦åˆ é™¤çš„æˆ¿é—´å·ï¼š";
     cin >> roomlicense;
     while (roomData >> name) {
         getline(roomData, str);
         if (roomlicense == name) {
-            cout << "ÒªÉ¾³ýµÄ·¿¼äÐÅÏ¢£º" << endl << str << endl;
+            cout << "è¦åˆ é™¤çš„æˆ¿é—´ä¿¡æ¯ï¼š" << endl << str << endl;
             flag = false;
             break;
         }
         outData << name << " " << str << endl;
         if(flag) {
-            cout << "¸Ã·¿¼äÃ»ÓÐ±»Ô¤¶¨" << endl;
+            cout << "è¯¥æˆ¿é—´æ²¡æœ‰è¢«é¢„å®š" << endl;
         }
         else {
             while (getline(roomData, str)) {
@@ -81,7 +81,7 @@ void Room::delRoom() {
             ifstream in("temproomData.txt", ios::in);
             ofstream out("roomData.txt", ios::out);
             if (!in || !out) {
-                cout << "ÐÞ¸ÄÊý¾ÝÊ±ÎÄ¼þ´ò¿ªÊ§°Ü" << endl;
+                cout << "ä¿®æ”¹æ•°æ®æ—¶æ–‡ä»¶æ‰“å¼€å¤±è´¥" << endl;
                 return;
             }
             else {
@@ -95,18 +95,18 @@ void Room::delRoom() {
     }
 }
 
-//²éÕÒ·¿¼ä
+//æŸ¥æ‰¾æˆ¿é—´
 void Room::findRoom() {
 	ifstream roomData("roomData.txt", ios::in);
 	if (!roomData) {
-		cout << "ÎÄ¼þ´ò¿ªÊ§°Ü£¡" << endl;
+		cout << "æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼" << endl;
 		return;
 	}
 	else {
 		string roomLicense;
 		time_t _time, t1;
 		bool flag = true;
-		cout << "ÇëÊäÈëÒª²éÑ¯µÄ·¿¼äºÅ:";
+		cout << "è¯·è¾“å…¥è¦æŸ¥è¯¢çš„æˆ¿é—´å·:";
 		cin >> roomLicense;
 		while (roomData >> roomNum) {
 			roomData >> roomType >> customerName >> phoneNum >> bookTime;		
@@ -118,40 +118,40 @@ void Room::findRoom() {
 			}
 		}
 		if (flag) {
-			cout << "¸Ã·¿¼äÃ»ÓÐ±»Ô¤¶¨£¡" << endl;
+			cout << "è¯¥æˆ¿é—´æ²¡æœ‰è¢«é¢„å®šï¼" << endl;
         }
 		else {
-			cout << "·¿¼äºÅ£º" << roomNum << " " << "·¿¼äÀàÐÍ£º" << roomType
-			<< " " << "¹Ë¿ÍÃû³Æ£º" << customerName << " " << "ÓÃ·¿Ê±³¤£º" << (t1 - bookTime) << "Ãë"
-			<< " " << "¼Æ·Ñ£º" << (t1 - bookTime) * 0.13 << "Ôª" << endl;
+			cout << "æˆ¿é—´å·ï¼š" << roomNum << " " << "æˆ¿é—´ç±»åž‹ï¼š" << roomType
+			<< " " << "é¡¾å®¢åç§°ï¼š" << customerName << " " << "ç”¨æˆ¿æ—¶é•¿ï¼š" << (t1 - bookTime) << "ç§’"
+			<< " " << "è®¡è´¹ï¼š" << (t1 - bookTime) * 0.13 << "å…ƒ" << endl;
         }
 	}
 	roomData.close();
 }
 
-//ÐÞ¸Ä·¿¼äÐÅÏ¢
+//ä¿®æ”¹æˆ¿é—´ä¿¡æ¯
 void Room::modRoom() {
 	ifstream roomData("roomData.txt", ios::in);
 	ofstream outData("temproomData.txt", ios::out);	
 	if (!roomData || !outData) {
-		cout << "ÎÄ¼þ´ò¿ªÊ§°Ü£¡" << endl;
+		cout << "æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼" << endl;
 		return;
 	}
 	string name, str;
 	bool flag = true;
-	cout << "ÇëÊäÈëÒªÐÞ¸ÄµÄ·¿¼äºÅ£º";
+	cout << "è¯·è¾“å…¥è¦ä¿®æ”¹çš„æˆ¿é—´å·ï¼š";
 	cin >> roomNum;
 	while (roomData >> name)	{
 		getline(roomData, str);
 		if (roomNum == name) {
 			time_t _time;
-			cout << "ÐÞ¸ÄºóµÄ·¿¼äºÅ£º";
+			cout << "ä¿®æ”¹åŽçš„æˆ¿é—´å·ï¼š";
 			cin >> roomNum;
-			cout << "ÐÞ¸ÄºóµÄ·¿¼äÀàÐÍ£º";
+			cout << "ä¿®æ”¹åŽçš„æˆ¿é—´ç±»åž‹ï¼š";
 			cin >> roomType;
-			cout << "ÐÞ¸ÄºóµÄ¹Ë¿ÍÐÕÃû£º";
+			cout << "ä¿®æ”¹åŽçš„é¡¾å®¢å§“åï¼š";
 			cin >> customerName;
-            cout << "ÐÞ¸ÄºóµÄ¹Ë¿ÍÊÖ»úºÅ£º";
+            cout << "ä¿®æ”¹åŽçš„é¡¾å®¢æ‰‹æœºå·ï¼š";
 			cin >> phoneNum;
 			bookTime = time(&_time);
 			outData << roomNum << " " << roomType << " " << customerName << " " << phoneNum << " "  << bookTime << endl;
@@ -161,7 +161,7 @@ void Room::modRoom() {
 		outData << name << " " << str << endl;				
 	}
 	if (flag) {
-		cout << "ÐÞ¸Ä·¿¼äÊý¾Ý²»´æÔÚ£¡" << endl;
+		cout << "ä¿®æ”¹æˆ¿é—´æ•°æ®ä¸å­˜åœ¨ï¼" << endl;
     }
 	else {
 		while (getline(roomData, str)) {
@@ -172,7 +172,7 @@ void Room::modRoom() {
 		ifstream in("temproomData.txt", ios::in);
 		ofstream out("roomData.txt", ios::out);
 		if (!in || !out) {
-			cout << "ÎÄ¼þ´ò¿ªÊ§°Ü£¡" << endl;
+			cout << "æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼" << endl;
 			return;
 		}
 		else {
@@ -186,12 +186,12 @@ void Room::modRoom() {
 	}
 }
 
-//ÏÔÊ¾ËùÓÐ·¿¼äÐÅÏ¢
+//æ˜¾ç¤ºæ‰€æœ‰æˆ¿é—´ä¿¡æ¯
 void Room::showInfor() {
-     //´´½¨ÎÄ¼þÊäÈëÁ÷£¬´ò¿ªroomData.txtÎÄ¼þ
+     //åˆ›å»ºæ–‡ä»¶è¾“å…¥æµï¼Œæ‰“å¼€roomData.txtæ–‡ä»¶
 	ifstream roomData("roomData.txt", ios::in);
 	if (!roomData) {
-		cout << "ÎÄ¼þ´ò¿ªÊ§°Ü£¡" << endl;
+		cout << "æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼" << endl;
 		return;
 	}
 	else {
@@ -201,27 +201,27 @@ void Room::showInfor() {
 		{
 			roomData >> roomType >> customerName >> phoneNum >> bookTime;	
 			t = time(&_time);
-			cout << "·¿¼äºÅ£º" << roomNum << " " << "·¿¼äÀàÐÍ£º" << roomType
-				<< " " << "¹Ë¿ÍÃû³Æ£º" << customerName << " " << "¹Ë¿ÍÊÖ»úºÅ" << phoneNum << " " << "×¡·¿Ê±³¤£º" << (t - bookTime) << "Ãë"
-				<< " " << "¼Æ·Ñ£º" << (t - bookTime) * 0.13 << "Ôª" << endl;
+			cout << "æˆ¿é—´å·ï¼š" << roomNum << " " << "æˆ¿é—´ç±»åž‹ï¼š" << roomType
+				<< " " << "é¡¾å®¢åç§°ï¼š" << customerName << " " << "é¡¾å®¢æ‰‹æœºå·" << phoneNum << " " << "ä½æˆ¿æ—¶é•¿ï¼š" << (t - bookTime) << "ç§’"
+				<< " " << "è®¡è´¹ï¼š" << (t - bookTime) * 0.13 << "å…ƒ" << endl;
 			flag = false;
 		}
 		if (flag) {
-            cout << "\nÎÞ·¿¼äÔ¤¶¨ÐÅÏ¢" << endl;
+            cout << "\næ— æˆ¿é—´é¢„å®šä¿¡æ¯" << endl;
         }
 		else {
-            cout << "\nÔ¤¶¨·¿¼äÒÑÏÔÊ¾" << endl;
+            cout << "\né¢„å®šæˆ¿é—´å·²æ˜¾ç¤º" << endl;
         }
 	}
 	roomData.close();
 }
 
-//¼ÆËãÔ¤¶¨Ê±³¤
+//è®¡ç®—é¢„å®šæ—¶é•¿
 void Room::timeAmount()
 {
 	ifstream roomData("roomData.txt", ios::in);	
 	if (!roomData) {
-		cout << "ÎÄ¼þ´ò¿ªÊ§°Ü£¡" << endl;
+		cout << "æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼" << endl;
 		return;
 	}
 	else {
@@ -235,19 +235,19 @@ void Room::timeAmount()
 			if ((t1 - bookTime) * 0.13 < long(11232)) 
 				c2++;
 		}
-		cout << "Ô¤¶¨·¿¼ä×ÜÊý£º" << c1 << endl;
-		cout << "×¡·¿Ê±¼ä²»³¬¹ýÒ»Ìì£º" << c2 << endl;
-		cout << "×¡·¿Ê±¼ä³¬¹ýÒ»Ìì£º" << c1 - c2 << endl;
+		cout << "é¢„å®šæˆ¿é—´æ€»æ•°ï¼š" << c1 << endl;
+		cout << "ä½æˆ¿æ—¶é—´ä¸è¶…è¿‡ä¸€å¤©ï¼š" << c2 << endl;
+		cout << "ä½æˆ¿æ—¶é—´è¶…è¿‡ä¸€å¤©ï¼š" << c1 - c2 << endl;
 	}
 	roomData.close();
 }
 
-//±£´æ·¿¼äÐÅÏ¢
+//ä¿å­˜æˆ¿é—´ä¿¡æ¯
 void Room::saveInfor()
 {
 	ofstream outData("roomData.txt", ios::app);	
 	if (!outData) {
-		cout << "ÎÄ¼þ´ò¿ªÊ§°Ü£¡" << endl;
+		cout << "æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼" << endl;
 		return;
 	}
 	else {

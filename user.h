@@ -2,10 +2,10 @@
 #include <string>
 using namespace std;
 
-//��ͨ�û��ֻ࣬�ܲ鿴��ͳ�ơ���ʾ����������ִ�����ӡ�ɾ�����޸ĵȲ���
+//普通用户类，只能查看、统计、显示车辆，不能执行添加、删除、修改等操作
 class User 
 {
 public:
-	//��ͨ�û���¼�Ĳ˵�
+	//普通用户登录的菜单
 	void check();
 };
