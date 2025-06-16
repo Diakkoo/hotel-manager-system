@@ -3,6 +3,11 @@
 #include <ctime>
 using namespace std;
 
+/*
+    创建房间类，
+    将房间特征作为**私有**成员变量，
+    声明一些函数用于添加、删除、修改、查询房间信息等操作
+*/
 class Room
 {
 private:

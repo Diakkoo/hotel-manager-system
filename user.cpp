@@ -6,8 +6,8 @@
 using namespace std;
 
 void User::check() {
-	Car car;
-	Room room;
+	Car car;	//声明一个Car对象
+	Room room;	//声明一个Room对象
 	while (1) {
 		system("cls");
 		cout << "===========================" << endl;
@@ -21,25 +21,25 @@ void User::check() {
 		cout << "6.退出普通用户" << endl;
 		int ch;
 		cout << "请输入要执行的操作：";
-		cin >> ch;
+		cin >> ch;	//接受输入的操作编号
 		switch (ch) {
 		case 1:
-            car.showInfor();	
+            car.showInfor();	//跳转到Car类的showInfor函数
 			break;
 		case 2:
-            car.findCar();
+            car.findCar();	//跳转到Car类的findCar函数
 			break;
 		case 3:
-            car.timeAmount();
+            car.timeAmount();	//跳转到Car类的timeAmount函数
 			break;
 		case 4:
-            room.showInfor();
+            room.showInfor();	//跳转到Room类的showInfor函数
 			break;
 		case 5:
-            room.findRoom();
+            room.findRoom();	//跳转到Room类的findRoom函数
 			break;
 		case 6:
-			return;
+			return;		//退出普通用户
 		default:
 			cout << "请输入正确的操作" << endl;
 		}
