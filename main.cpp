@@ -5,6 +5,7 @@
 using namespace std;
 
 int main() {
+	system("chcp 65001 > nul");		// 强制设置终端编码为UTF-8
 	User user;								//创建普通用户对象
 	Admin admin;							//创建管理员对象
 	char ch;
