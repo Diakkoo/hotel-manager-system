@@ -70,32 +70,32 @@ void Room::delRoom() {
             flag = false;		// flag标记已找到要删除的房间信息
             break;
         }
-        outData << name << " " << str << endl;
-        if(flag) {		// 如果flag为true，即未找到要删除的房间信息
-            cout << "该房间没有被预定" << endl;
+	}
+    outData << name << " " << str << endl;
+    if(flag) {		// 如果flag为true，即未找到要删除的房间信息
+        cout << "该房间没有被预定" << endl;
+    }
+    else {
+        while (getline(roomData, str)) {		// 将剩余的房间信息写入临时文件
+            outData << str << endl;
+        }
+
+        roomData.close();
+        outData.close();
+
+        ifstream in("temproomData.txt", ios::in);		// 打开临时文件输入流
+        ofstream out("roomData.txt", ios::out);		// 打开原文件输出流
+        if (!in || !out) {		// 判断文件是否打开
+            cout << "修改数据时文件打开失败" << endl;
+            return;
         }
         else {
-            while (getline(roomData, str)) {		// 将剩余的房间信息写入临时文件
-                outData << str << endl;
+            while (getline(in, str)) {
+                out << str << endl;		// 将临时文件中的内容写入原文件
             }
-
-            roomData.close();
-            outData.close();
-
-            ifstream in("temproomData.txt", ios::in);		// 打开临时文件输入流
-            ofstream out("roomData.txt", ios::out);		// 打开原文件输出流
-            if (!in || !out) {		// 判断文件是否打开
-                cout << "修改数据时文件打开失败" << endl;
-                return;
-            }
-            else {
-                while (getline(in, str)) {
-                    out << str << endl;		// 将临时文件中的内容写入原文件
-                }
-            }
-            in.close();
-            out.close();
         }
+        in.close();
+        out.close();
     }
 }
 

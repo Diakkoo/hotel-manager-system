@@ -69,32 +69,32 @@ void Car::delCar() {
             flag = false;		// 标记为找到车辆
             break;		// 跳出循环
         }
-        outData << name << " " << str << endl;		// 将未删除的车辆信息写入临时文件
-        if(flag) {		// 如果flag为true，即没有该车辆信息
+	}
+    outData << name << " " << str << endl;		// 将未删除的车辆信息写入临时文件
+    if(flag) {		// 如果flag为true，即没有该车辆信息
             cout << "该车辆不存在" << endl;
+    }
+    else {
+        while (getline(carData, str)) {		// 读取剩余的车辆信息
+                outData << str << endl;		// 将剩余的车辆信息写入临时文件
+        }
+
+        carData.close();
+        outData.close();
+
+        ifstream in("tempcarData.txt", ios::in);	// 打开临时文件输入流
+        ofstream out("carData.txt", ios::out);		// 打开原文件输出流
+        if (!in || !out) {
+             cout << "修改数据时文件打开失败" << endl;
+            return;
         }
         else {
-            while (getline(carData, str)) {		// 读取剩余的车辆信息
-                outData << str << endl;		// 将剩余的车辆信息写入临时文件
+            while (getline(in, str)) { 	// 将临时文件内容写入原文件	
+                out << str << endl;
             }
-
-            carData.close();
-            outData.close();
-
-            ifstream in("tempcarData.txt", ios::in);	// 打开临时文件输入流
-            ofstream out("carData.txt", ios::out);		// 打开原文件输出流
-            if (!in || !out) {
-                cout << "修改数据时文件打开失败" << endl;
-                return;
-            }
-            else {
-                while (getline(in, str)) { 	// 将临时文件内容写入原文件	
-                    out << str << endl;
-                }
-            }
-            in.close();
-            out.close();
         }
+        in.close();
+        out.close();
     }
 }
 
